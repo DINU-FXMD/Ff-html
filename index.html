@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fire Diamond Top-Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #ff5722;
+            text-align: center;
+        }
+        .package-selector {
+            margin: 20px 0;
+        }
+        select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+        .price-display {
+            background-color: #f8f8f8;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        .whatsapp-btn {
+            display: block;
+            background-color: #25D366;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+        }
+        .note {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .diamond-icon {
+            color: #2196F3;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Free Fire Diamond Top-Up</h1>
+        
+        <div class="package-selector">
+            <select id="diamondPackage">
+                <option value="">Select Diamond Package</option>
+                <option value="25">💎 25 Diamonds = LKR 85.00</option>
+                <option value="50">💎 50 Diamonds = LKR 170.00</option>
+                <option value="75">💎 75 Diamonds = LKR 270.00</option>
+                <option value="100">💎 100 Diamonds = LKR 310.00</option>
+                <option value="200">💎 200 Diamonds = LKR 620.00</option>
+                <option value="310">💎 310 Diamonds = LKR 820.00</option>
+                <option value="410">💎 410 Diamonds = LKR 1080.00</option>
+                <option value="520">💎 520 Diamonds = LKR 1320.00</option>
+                <option value="830">💎 830 Diamonds = LKR 2080.00</option>
+                <option value="1060">💎 1060 Diamonds = LKR 2580.00</option>
+                <option value="1580">💎 1580 Diamonds = LKR 3830.00</option>
+                <option value="2180">💎 2180 Diamonds = LKR 5120.00</option>
+                <option value="3240">💎 3240 Diamonds = LKR 7640.00</option>
+                <option value="5600">💎 5600 Diamonds = LKR 12540.00</option>
+                <option value="10060">💎 10060 Diamonds = LKR 23400.00</option>
+                <option value="11500">💎 11500 Diamonds = LKR 26540.00</option>
+                <option value="LUP">🌟 LEVEL UP PASS = LKR 1250.00</option>
+            </select>
+        </div>
+        
+        <div class="price-display" id="selectedPrice">
+            Select a package to see details
+        </div>
+        
+        <a href="#" class="whatsapp-btn" id="whatsappLink">
+            Contact via WhatsApp
+        </a>
+        
+        <p class="note">
+            After selecting your package, click the button above to contact us via WhatsApp for your top-up.
+        </p>
+    </div>
+
+    <script>
+        const diamondPackage = document.getElementById('diamondPackage');
+        const selectedPrice = document.getElementById('selectedPrice');
+        const whatsappLink = document.getElementById('whatsappLink');
+        
+        diamondPackage.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            
+            if (this.value === "") {
+                selectedPrice.textContent = "Select a package to see details";
+                whatsappLink.href = "#";
+                return;
+            }
+            
+            if (this.value === "LUP") {
+                selectedPrice.textContent = "LEVEL UP PASS = LKR 1250.00";
+                whatsappLink.href = "https://wa.me/720244981?text=LEVEL%20UP%20PASS";
+            } else {
+                selectedPrice.textContent = selectedOption.text;
+                whatsappLink.href = `https://wa.me/720244981?text=${this.value}Diamonds`;
+            }
+        });
+    </script>
+</body>
+</html>
