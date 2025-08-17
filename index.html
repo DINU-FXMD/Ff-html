@@ -5,133 +5,357 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Free Fire Diamond Top-Up</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Press+Start+2P&display=swap');
+        
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            font-family: 'Arial', sans-serif;
             margin: 0;
+            padding: 0;
+            background-image: url('https://i.ibb.co/60tF6WD2/612.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: white;
+        }
+        
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.85);
+            min-height: 100vh;
             padding: 20px;
         }
+        
         .container {
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
-            background-color: #fff;
+            background-color: rgba(0, 0, 0, 0.7);
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            border: 2px solid #ff5722;
+            box-shadow: 0 0 20px rgba(255, 87, 34, 0.5);
         }
+        
         h1 {
             color: #ff5722;
             text-align: center;
+            font-family: 'Bungee', cursive;
+            text-shadow: 0 0 10px rgba(255, 87, 34, 0.7);
+            margin-bottom: 30px;
+            font-size: 2.5rem;
         }
-        .package-selector {
+        
+        h2 {
+            color: #4CAF50;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            margin-top: 30px;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+            text-shadow: 0 0 5px rgba(76, 175, 80, 0.7);
+        }
+        
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
             margin: 20px 0;
         }
-        select {
-            width: 100%;
-            padding: 12px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            font-size: 16px;
-        }
-        .price-display {
-            background-color: #f8f8f8;
+        
+        .package-item {
+            background-color: rgba(30, 30, 30, 0.9);
+            border-radius: 10px;
             padding: 15px;
-            border-radius: 5px;
-            margin: 15px 0;
             text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
+            border: 1px solid #444;
+            transition: all 0.3s;
+            cursor: pointer;
         }
+        
+        .package-item:hover {
+            transform: scale(1.05);
+            border-color: #ff5722;
+            box-shadow: 0 0 15px rgba(255, 87, 34, 0.5);
+        }
+        
+        .diamond-icon {
+            color: #2196F3;
+            font-size: 24px;
+        }
+        
+        .package-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin: 5px 0;
+            color: #ffeb3b;
+        }
+        
+        .package-price {
+            color: #4CAF50;
+            font-size: 1rem;
+        }
+        
         .whatsapp-btn {
             display: block;
             background-color: #25D366;
             color: white;
             text-align: center;
             padding: 15px;
-            border-radius: 5px;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
-            margin-top: 20px;
-            transition: background-color 0.3s;
+            margin: 25px auto;
+            width: 80%;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
         }
+        
         .whatsapp-btn:hover {
             background-color: #128C7E;
+            transform: scale(1.05);
         }
+        
+        .selected-package {
+            background-color: rgba(33, 150, 243, 0.2);
+            border: 2px solid #2196F3;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 1.2rem;
+            color: white;
+        }
+        
         .note {
-            font-size: 14px;
-            color: #666;
+            font-size: 0.9rem;
+            color: #aaa;
             text-align: center;
             margin-top: 20px;
+            font-style: italic;
         }
-        .diamond-icon {
-            color: #2196F3;
-            font-size: 20px;
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 87, 34, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 87, 34, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 87, 34, 0); }
+        }
+        
+        .section-divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ff5722, transparent);
+            margin: 30px 0;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Free Fire Diamond Top-Up</h1>
-        
-        <div class="package-selector">
-            <select id="diamondPackage">
-                <option value="">Select Diamond Package</option>
-                <option value="25">💎 25 Diamonds = LKR 85.00</option>
-                <option value="50">💎 50 Diamonds = LKR 170.00</option>
-                <option value="75">💎 75 Diamonds = LKR 270.00</option>
-                <option value="100">💎 100 Diamonds = LKR 310.00</option>
-                <option value="200">💎 200 Diamonds = LKR 620.00</option>
-                <option value="310">💎 310 Diamonds = LKR 820.00</option>
-                <option value="410">💎 410 Diamonds = LKR 1080.00</option>
-                <option value="520">💎 520 Diamonds = LKR 1320.00</option>
-                <option value="830">💎 830 Diamonds = LKR 2080.00</option>
-                <option value="1060">💎 1060 Diamonds = LKR 2580.00</option>
-                <option value="1580">💎 1580 Diamonds = LKR 3830.00</option>
-                <option value="2180">💎 2180 Diamonds = LKR 5120.00</option>
-                <option value="3240">💎 3240 Diamonds = LKR 7640.00</option>
-                <option value="5600">💎 5600 Diamonds = LKR 12540.00</option>
-                <option value="10060">💎 10060 Diamonds = LKR 23400.00</option>
-                <option value="11500">💎 11500 Diamonds = LKR 26540.00</option>
-                <option value="LUP">🌟 LEVEL UP PASS = LKR 1250.00</option>
-            </select>
+    <div class="overlay">
+        <div class="container pulse">
+            <h1>FREE FIRE TOP-UP</h1>
+            
+            <div class="selected-package" id="selectedPackage">
+                Select a package to continue
+            </div>
+            
+            <h2>💎 DIAMOND PACKAGES</h2>
+            <div class="package-grid">
+                <div class="package-item" onclick="selectPackage('25 Diamonds = LKR 85.00', '25Diamonds')">
+                    <span class="diamond-icon">💎</span>
+                    <div class="package-title">25 Diamonds</div>
+                    <div class="package-price">LKR 85.00</div>
+                </div>
+                
+                <div class="package-item" onclick="selectPackage('50 Diamonds = LKR 170.00', '50Diamonds')">
+                    <span class="diamond-icon">💎</span>
+                    <div class="package-title">50 Diamonds</div>
+                    <div class="package-price">LKR 170.00</div>
+                </div>
+                
+                <div class="package-item" onclick="selectPackage('75 Diamonds = LKR 270.00', '75Diamonds')">
+                    <span class="diamond-icon">💎</span>
+                    <div class="package-title">75 Diamonds</div>
+                    <div class="package-price">LKR 270.00</div>
+                </div>
+                
+                <div class="package-item" onclick="selectPackage('100 Diamonds = LKR 310.00', '100Diamonds')">
+                    <span class="diamond-icon">💎</span>
+                    <div class="package-title">100 Diamonds</div>
+                    <div class="package-price">LKR 310.00</div>
+                </div>
+                
+                <div class="package-item" onclick="selectPackage('200 Diamonds = LKR 620.00', '200Diamonds')">
+                    <span class="diamond-icon">💎</span>
+                    <div class="package-title">200 Diamonds</div>
+                    <div class="package-price">LKR 620.00</div>
+                </div>
+                
+                <div class="package-item" onclick="selectPackage('310 Diamonds = LKR 820.00', '310Diamonds')">
+                    <span class="diamond-icon">💎</span>
+                    <div class="package-title">310 Diamonds</div>
+                    <div class="package-price">LKR 820.00</div>
+                </div>
+                
+                <div class="package-item" onclick="selectPackage('410 Diamonds = LKR 1080.00', '410Diamonds')">
+                    <span class="diamond-icon">💎</span>
+                    <div class="package-title">410 Diamonds</div>
+                    <div class="package-price">LKR 1080.00</div>
+                </div>
+                
+                <div class="package-item" onclick="selectPackage('520 Diamonds = LKR 1320.00', '520Diamonds')">
+                    <span class="diamond-icon">💎</span>
+                    <div class="package-title">520 Diamonds</div>
+                    <div class="package-price">LKR 1320.00</div>
+                </div>
+                
+                <div class="package-item" onclick="selectPackage('830 Diamonds = LKR 2080.00', '830Diamonds')">
+                    <span class="diamond-icon">💎</span>
+                    <div class="package-title">830 Diamonds</div>
+                    <div class="package-price">LKR 2080.00</div>
+                </div>
+                
+                <div class="package-item" onclick="selectPackage('1060 Diamonds = LKR 2580.00', '1060Diamonds')">
+                    <span class="diamond-icon">💎</span>
+                    <div class="package-title">1060 Diamonds</div>
+                    <div class="package-price">LKR 2580.00</div>
+                </div>
+                
+                <div class="package-item" onclick="selectPackage('1580 Diamonds = LKR 3830.00', '1580Diamonds')">
+                    <span class="diamond-icon">💎</span>
+                    <div class="package-title">1580 Diamonds</div>
+                    <div class="package-price">LKR 3830.00</div>
+                </div>
+                
+                <div class="package-item" onclick="selectPackage('2180 Diamonds = LKR 5120.00', '2180Diamonds')">
+                    <span class="diamond-icon">💎</span>
+                    <div class="package-title">2180 Diamonds</div>
+                    <div class="package-price">LKR 5120.00</div>
+                </div>
+                
+                <div class="package-item" onclick="selectPackage('3240 Diamonds = LKR 7640.00', '3240Diamonds')">
+                    <span class="diamond-icon">💎</span>
+                    <div class="package-title">3240 Diamonds</div>
+                    <div class="package-price">LKR 7640.00</div>
+                </div>
+                
+                <div class="package-item" onclick="selectPackage('5600 Diamonds = LKR 12540.00', '5600Diamonds')">
+                    <span class="diamond-icon">💎</span>
+                    <div class="package-title">5600 Diamonds</div>
+                    <div class="package-price">LKR 12540.00</div>
+                </div>
+                
+                <div class="package-item" onclick="selectPackage('10060 Diamonds = LKR 23400.00', '10060Diamonds')">
+                    <span class="diamond-icon">💎</span>
+                    <div class="package-title">10060 Diamonds</div>
+                    <div class="package-price">LKR 23400.00</div>
+                </div>
+                
+                <div class="package-item" onclick="selectPackage('11500 Diamonds = LKR 26540.00', '11500Diamonds')">
+                    <span class="diamond-icon">💎</span>
+                    <div class="package-title">11500 Diamonds</div>
+                    <div class="package-price">LKR 26540.00</div>
+                </div>
+            </div>
+            
+            <div class="section-divider"></div>
+            
+            <h2>🌟 LEVEL UP PASS</h2>
+            <div class="package-grid">
+                <div class="package-item" onclick="selectPackage('LEVEL UP PASS = LKR 1250.00', 'LEVEL%20UP%20PASS')">
+                    <span class="diamond-icon">🌟</span>
+                    <div class="package-title">LEVEL UP PASS</div>
+                    <div class="package-price">LKR 1250.00</div>
+                </div>
+            </div>
+            
+            <div class="section-divider"></div>
+            
+            <h2>📅 WEEKLY/MONTHLY PACKS</h2>
+            <div class="package-grid">
+                <div class="package-item" onclick="selectPackage('WEEKLY LITE = LKR 120.00', 'WEEKLY%20LITE')">
+                    <span class="diamond-icon">📅</span>
+                    <div class="package-title">WEEKLY LITE</div>
+                    <div class="package-price">LKR 120.00</div>
+                </div>
+                
+                <div class="package-item" onclick="selectPackage('Weekly = LKR 460.00', 'Weekly')">
+                    <span class="diamond-icon">📅</span>
+                    <div class="package-title">Weekly</div>
+                    <div class="package-price">LKR 460.00</div>
+                </div>
+                
+                <div class="package-item" onclick="selectPackage('Monthly = LKR 2250.00', 'Monthly')">
+                    <span class="diamond-icon">📅</span>
+                    <div class="package-title">Monthly</div>
+                    <div class="package-price">LKR 2250.00</div>
+                </div>
+                
+                <div class="package-item" onclick="selectPackage('VIP PACK = LKR 2700.00', 'VIP%20PACK')">
+                    <span class="diamond-icon">👑</span>
+                    <div class="package-title">VIP PACK</div>
+                    <div class="package-price">LKR 2700.00</div>
+                </div>
+                
+                <div class="package-item" onclick="selectPackage('SUPER VIP = LKR 4050.00', 'SUPER%20VIP')">
+                    <span class="diamond-icon">👑</span>
+                    <div class="package-title">SUPER VIP</div>
+                    <div class="package-price">LKR 4050.00</div>
+                </div>
+            </div>
+            
+            <div class="section-divider"></div>
+            
+            <h2>⚡ EVO ACCESS</h2>
+            <div class="package-grid">
+                <div class="package-item" onclick="selectPackage('Evo Access 3D = LKR 180.00', 'Evo%20Access%203D')">
+                    <span class="diamond-icon">⚡</span>
+                    <div class="package-title">Evo Access 3D</div>
+                    <div class="package-price">LKR 180.00</div>
+                </div>
+                
+                <div class="package-item" onclick="selectPackage('Evo Access 7D = LKR 270.00', 'Evo%20Access%207D')">
+                    <span class="diamond-icon">⚡</span>
+                    <div class="package-title">Evo Access 7D</div>
+                    <div class="package-price">LKR 270.00</div>
+                </div>
+                
+                <div class="package-item" onclick="selectPackage('Evo Access 30D = LKR 700.00', 'Evo%20Access%2030D')">
+                    <span class="diamond-icon">⚡</span>
+                    <div class="package-title">Evo Access 30D</div>
+                    <div class="package-price">LKR 700.00</div>
+                </div>
+            </div>
+            
+            <a href="#" class="whatsapp-btn" id="whatsappLink">
+                ORDER VIA WHATSAPP
+            </a>
+            
+            <p class="note">
+                Click on any package to select it, then click the WhatsApp button to place your order
+            </p>
         </div>
-        
-        <div class="price-display" id="selectedPrice">
-            Select a package to see details
-        </div>
-        
-        <a href="#" class="whatsapp-btn" id="whatsappLink">
-            Contact via WhatsApp
-        </a>
-        
-        <p class="note">
-            After selecting your package, click the button above to contact us via WhatsApp for your top-up.
-        </p>
     </div>
 
     <script>
-        const diamondPackage = document.getElementById('diamondPackage');
-        const selectedPrice = document.getElementById('selectedPrice');
-        const whatsappLink = document.getElementById('whatsappLink');
-        
-        diamondPackage.addEventListener('change', function() {
-            const selectedOption = this.options[this.selectedIndex];
+        function selectPackage(packageText, packageValue) {
+            document.getElementById('selectedPackage').textContent = packageText;
             
-            if (this.value === "") {
-                selectedPrice.textContent = "Select a package to see details";
-                whatsappLink.href = "#";
-                return;
-            }
+            // Update WhatsApp link
+            const whatsappLink = document.getElementById('whatsappLink');
+            whatsappLink.href = `https://wa.me/720244981?text=${packageValue}`;
             
-            if (this.value === "LUP") {
-                selectedPrice.textContent = "LEVEL UP PASS = LKR 1250.00";
-                whatsappLink.href = "https://wa.me/720244981?text=LEVEL%20UP%20PASS";
-            } else {
-                selectedPrice.textContent = selectedOption.text;
-                whatsappLink.href = `https://wa.me/720244981?text=${this.value}Diamonds`;
-            }
-        });
+            // Add visual feedback
+            const allItems = document.querySelectorAll('.package-item');
+            allItems.forEach(item => {
+                item.style.borderColor = '#444';
+                item.style.transform = 'scale(1)';
+            });
+            
+            event.currentTarget.style.borderColor = '#ff5722';
+            event.currentTarget.style.transform = 'scale(1.05)';
+        }
     </script>
 </body>
 </html>
